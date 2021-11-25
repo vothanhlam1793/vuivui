@@ -10,6 +10,10 @@ var objKhuyenmai = {
     date: new Date("2000-01-01"),
     data: []
 }
+var objCameraWifi = {
+    date: new Date("2000-01-01"),
+    data: []
+}
 
 module.exports = app => {
     var router = require("express").Router();
@@ -63,16 +67,16 @@ module.exports = app => {
     })
     router.get("/khuyenmaiwifi", (req, res) => {
         var t1 = new Date();
-        if(((new Date()).getTime() - objKhuyenmai.date.getTime()) > 86400*1000){
+        if(((new Date()).getTime() - objCameraWifi.date.getTime()) > 86400*1000){
             req.query.new = 1;    
         }
         if(req.query.new){
             fetch(url + "?sheetName=CAMERAWIFI").then(res=>res.json()).then(j=>{
-                objKhuyenmai.date = new Date();
-                objKhuyenmai.data = j;
+                objCameraWifi.date = new Date();
+                objCameraWifi.data = j;
                 res.render("sheet/wifi", {
                     title: "Khuyến mãi camera tháng",
-                    data: objKhuyenmai.data,
+                    data: objCameraWifi.data,
                     url: req.originalUrl
                 })
                 console.log((- t1.getTime() + (new Date()).getTime())/1000, "s");
@@ -80,7 +84,7 @@ module.exports = app => {
         } else {
             res.render("sheet/wifi", {
                 title: "Khuyến mãi camera tháng",
-                data: objKhuyenmai.data,
+                data: objCameraWifi.data,
                 url: req.originalUrl
             })
         }
