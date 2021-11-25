@@ -31,7 +31,7 @@
                     <td>Giá lẻ</td>
                     <td>Cấp 3</td>
                     <td>Cấp 2</td>
-                    <!-- <td>Cấp 1</td> -->
+                    <td>Cấp 1</td>
                     <td>Loại</td>
                 </tr>
                 <% function numberWithCommas(x) { %>
@@ -43,7 +43,7 @@
                     <td style="text-align:right" class="table-secondary"><%= numberWithCommas(e.productPriceColumn) %></td>
                     <td style="text-align:right" class="table-danger"><%= numberWithCommas(e.cap3) %></td>
                     <td style="text-align:right" class="table-warning"><%= numberWithCommas(e.cap2) %></td>
-                    <!-- <td style="text-align:right" class="table-primary"><%= numberWithCommas(e.cap1) %></td> -->
+                    <td style="text-align:right" class="table-primary"><%= numberWithCommas(e.cap1) %></td>
                     <td><%= e.sheet %></td>
                 </tr>
                 <% }) %>
