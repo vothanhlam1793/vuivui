@@ -61,5 +61,29 @@ module.exports = app => {
             })
         }
     })
+    router.get("/khuyenmaiwifi", (req, res) => {
+        var t1 = new Date();
+        if(((new Date()).getTime() - objKhuyenmai.date.getTime()) > 86400*1000){
+            req.query.new = 1;    
+        }
+        if(req.query.new){
+            fetch(url + "?sheetName=CAMERAWIFI").then(res=>res.json()).then(j=>{
+                objKhuyenmai.date = new Date();
+                objKhuyenmai.data = j;
+                res.render("sheet/wifi", {
+                    title: "Khuyến mãi camera tháng",
+                    data: objKhuyenmai.data,
+                    url: req.originalUrl
+                })
+                console.log((- t1.getTime() + (new Date()).getTime())/1000, "s");
+            })
+        } else {
+            res.render("sheet/wifi", {
+                title: "Khuyến mãi camera tháng",
+                data: objKhuyenmai.data,
+                url: req.originalUrl
+            })
+        }
+    })
     app.use("/sheet", router);
 }
